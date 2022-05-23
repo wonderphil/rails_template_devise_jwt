@@ -1,0 +1,4 @@
+#!/bin/bash
+
+RAILS_ENV=test bundle exec rails db:schema:load
+RAILS_ENV=test bundle exec rails docs:generate
