@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   ExceptionHunter.routes(self)
 
   namespace :api do

@@ -14,10 +14,12 @@ This works well with [Fuse React](https://fusetheme.com/admin-templates/react/) 
 - add to docker
 - add new relic
 - configure swagger
-- fix `rails code:analysis` robocop not working
+- ~~fix `rails code:analysis` robocop not working~~
 - upgrade ruby to version 3
-- setup github actions
-- update confirmation emails to look better
+- ~~setup github actions~~
+- add git hub action to build docker containers
+- add Validation to models
+- ~~update confirmation emails to look better~~
 - ~~do password changes~~
 
 ## Setup required
