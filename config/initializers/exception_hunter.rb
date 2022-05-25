@@ -4,7 +4,7 @@ ExceptionHunter.setup do |config|
   # This flag allows disabling error tracking, it's set to track in
   # any environment but development or test by default
   #
-  config.enabled = !(Rails.env.test?)
+  config.enabled = !Rails.env.test?
 
   # == Dashboard User
   # Exception Hunter allows you to restrict users who can see the dashboard
@@ -29,7 +29,7 @@ ExceptionHunter.setup do |config|
   # Exception Hunter will try to include the attributes defined here
   # as part of the user information that is kept from the request.
   #
-  config.user_attributes = [:id, :email]
+  config.user_attributes = %i[id email]
 
   # == Stale errors
   #
@@ -61,7 +61,8 @@ ExceptionHunter.setup do |config|
 
   # == Filter sensitive parameters
   #
-  # You can configure if you want to filter some fields on the error's data for security or privacy issues.
+  # You can configure if you want to filter some fields on the error's data for security or privacy
+  # issues.
   # We use ActiveSupport::ParameterFilter for this, any accepted pattern will work.
   # https://api.rubyonrails.org/classes/ActiveSupport/ParameterFilter.html
   # Default: []

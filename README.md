@@ -7,17 +7,19 @@ This works well with [Fuse React](https://fusetheme.com/admin-templates/react/) 
 
 ## Things to do
 
-- fix tests
 - Config your timezone accordingly in `application.rb`.
-- test in non-dev environment
 - replace puma with unicorn
 - add to docker
+- add git hub action to build docker containers
+- add Validation to models
 - add new relic
+- fix tests
 - configure swagger
-- fix `rails code:analysis` robocop not working
 - upgrade ruby to version 3
-- setup github actions
-- update confirmation emails to look better
+- test in non-dev environment
+- ~~fix `rails code:analysis` robocop not working~~
+- ~~setup github actions~~
+- ~~update confirmation emails to look better~~
 - ~~do password changes~~
 
 ## Setup required
@@ -48,6 +50,13 @@ These can be in `.env` files in the root of the app
 - `PIDFILE=` - only used in production
 - `S3_BUCKET_NAME=` - only used in production
 - `AWS_BUCKET_REGION=` - only used in production
+- `ASSET_HOST` - used for servering email assets
+- `FACEBOOK_LINK` - socail link for company
+- `TWITTER_LINK` - socail link for company
+- `INSTAGRAM_LINK` - socail link for company
+- `LINKEDIN_LINK` - socail link for company
+- `CONTACT_ADDRESS` - company address
+- `CONTACT_US_LINK` - url to fe contact us page
 
 ## Gems
 

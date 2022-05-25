@@ -40,6 +40,7 @@ group :development do
   gem 'i18n-tasks', '~> 0.9.30'
   gem 'letter_opener', '~> 1.7'
   gem 'listen', '~> 3.2'
+  gem 'lol_dba'
   gem 'rails_best_practices', '~> 1.20'
   gem 'reek', '~> 5.5'
   gem 'rubocop-rails', '~> 2.12', require: false
@@ -56,4 +57,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
