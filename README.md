@@ -7,18 +7,18 @@ This works well with [Fuse React](https://fusetheme.com/admin-templates/react/) 
 
 ## Things to do
 
-- fix tests
 - Config your timezone accordingly in `application.rb`.
-- test in non-dev environment
 - replace puma with unicorn
 - add to docker
-- add new relic
-- configure swagger
-- ~~fix `rails code:analysis` robocop not working~~
-- upgrade ruby to version 3
-- ~~setup github actions~~
 - add git hub action to build docker containers
 - add Validation to models
+- add new relic
+- fix tests
+- configure swagger
+- upgrade ruby to version 3
+- test in non-dev environment
+- ~~fix `rails code:analysis` robocop not working~~
+- ~~setup github actions~~
 - ~~update confirmation emails to look better~~
 - ~~do password changes~~
 
