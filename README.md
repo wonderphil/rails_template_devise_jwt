@@ -18,7 +18,7 @@ This works well with [Fuse React](https://fusetheme.com/admin-templates/react/) 
 - upgrade ruby to version 3
 - setup github actions
 - update confirmation emails to look better
-- do password changes
+- ~~do password changes~~
 
 ## Setup required
 

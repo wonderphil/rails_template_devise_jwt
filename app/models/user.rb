@@ -57,6 +57,10 @@ class User < ApplicationRecord
     end
   end
 
+  def devise_mailer
+    UserMailer
+  end
+
   private
 
   def init_uid

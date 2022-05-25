@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   ExceptionHunter.routes(self)
 
   namespace :api do
@@ -20,6 +20,7 @@ Rails.application.routes.draw do
               controllers: {
                 sessions: 'api/v1/sessions',
                 registrations: 'api/v1/registrations',
-                confirmations: 'api/v1/confirmations'
+                confirmations: 'api/v1/confirmations',
+                passwords: 'api/v1/passwords'
               }
 end
