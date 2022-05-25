@@ -50,6 +50,13 @@ These can be in `.env` files in the root of the app
 - `PIDFILE=` - only used in production
 - `S3_BUCKET_NAME=` - only used in production
 - `AWS_BUCKET_REGION=` - only used in production
+- `ASSET_HOST` - used for servering email assets
+- `FACEBOOK_LINK` - socail link for company
+- `TWITTER_LINK` - socail link for company
+- `INSTAGRAM_LINK` - socail link for company
+- `LINKEDIN_LINK` - socail link for company
+- `CONTACT_ADDRESS` - company address
+- `CONTACT_US_LINK` - url to fe contact us page
 
 ## Gems
 
