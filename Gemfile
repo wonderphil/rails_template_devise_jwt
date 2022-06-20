@@ -17,9 +17,10 @@ gem 'mailgun-ruby', '~>1.2.5'
 gem 'oj', '~> 3.9', '>= 3.9.2'
 gem 'pagy', '~> 3.7', '>= 3.7.5'
 gem 'pg'
-gem 'puma', '~> 5.6'
+# gem 'puma', '~> 5.6'
 gem 'pundit', '~> 2.1'
 gem 'rack-cors', '~> 1.0', '>= 1.0.6'
+gem 'unicorn'
 gem 'yaaf', '~> 0.1'
 
 group :development, :test do

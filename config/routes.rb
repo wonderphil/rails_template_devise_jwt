@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   ExceptionHunter.routes(self)
 
+  root to: 'api/v1/api#status'
   namespace :api do
     namespace :v1, defaults: { format: :json } do
       get :status, to: 'api#status'

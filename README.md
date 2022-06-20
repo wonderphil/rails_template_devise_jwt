@@ -7,8 +7,8 @@ This works well with [Fuse React](https://fusetheme.com/admin-templates/react/) 
 
 ## Things to do
 
-- Config your timezone accordingly in `application.rb`.
-- replace puma with unicorn
+- ~~Config your timezone accordingly in `application.rb`.~~
+- ~~replace puma with unicorn~~
 - add to docker
 - add git hub action to build docker containers
 - add Validation to models
@@ -45,7 +45,8 @@ These can be in `.env` files in the root of the app
 - `REDIS_URL=` - only used in production
 - `DB_USER=rails`
 - `DB_HOST=locahost`
-- `RAILS_MAX_THREADS=` - only used in production
+- `RAILS_MAX_THREADS=5` - only used in production
+- `LISTEN_ON=3000` - only used in production
 - `RAILS_ENV=` - only used in production
 - `PIDFILE=` - only used in production
 - `S3_BUCKET_NAME=` - only used in production
@@ -57,6 +58,25 @@ These can be in `.env` files in the root of the app
 - `LINKEDIN_LINK` - socail link for company
 - `CONTACT_ADDRESS` - company address
 - `CONTACT_US_LINK` - url to fe contact us page
+- `TIMEZONE` - Time zone setting for Rails
+
+### Run local Using Unicorn
+
+```bash
+unicorn -p 3000
+```
+
+### Build Docker Image
+
+To build docker image and sort on Docker registry, use the following commands, replacing the registry name and user:
+
+```bash
+docker login -u docker_reg https://registry.wonderphiltech.io
+
+docker buildx build --push --platform linux/arm64/v8,linux/amd64 -t registry.wonderphiltech.io/rails-api-template-x:latest . && \
+docker tag rails-api-template:latest registry.wonderphiltech.io/rails-api-template:latest && \
+docker push registry.wonderphiltech.io/rails-api-template:latest
+```
 
 ## Gems
 
