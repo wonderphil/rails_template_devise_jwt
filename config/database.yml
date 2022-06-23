@@ -2,24 +2,20 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username:
-  password:
+  username: <%= ENV['DB_USER'] %>
+  password: <%= Rails.application.credentials.db_password %>
   # If you using docker the host should be "db"
-  host: localhost
+  host: <%= ENV['DB_HOST'] %>
   port: 5432
+  database: <%= ENV.fetch("APP_NAME") { "rails_template" } %>_<%= Rails.env %>
 
 development:
- <<: *default
- database: <%= ENV.fetch("APP_NAME") { "rails_template" } %>_development
+  <<: *default
 
 test:
- <<: *default
- database: <%= ENV.fetch("APP_NAME") { "rails_template" } %>_test
+  <<: *default
+
 
 production:
- <<: *default
- database: <%= ENV.fetch("APP_NAME") { "rails_template" } %>_production
- username: <%= ENV['DB_USER'] %>
- password: <%= Rails.application.credentials.db_password %>
- host: <%= ENV['DB_HOST'] %>
- port: 5432
+  <<: *default
+

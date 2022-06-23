@@ -1,0 +1,28 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: rails
+      POSTGRES_USER: rails
+    ports:
+      - '5434:5432'
+
+  web:
+    image: rails-api-template
+    links:
+      - "postgres:db.local"
+    volumes:
+      - .:/app
+    ports:
+      - '8080:8080'
+    env_file:
+      - .docker.env
+    environment:
+      LISTEN_ON: 8080
+      RAILS_MASTER_KEY: ${RAT_RAILS_MASTER_KEY}
+
+volumes:
+  postgres:

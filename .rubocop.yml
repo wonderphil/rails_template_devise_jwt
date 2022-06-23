@@ -12,6 +12,7 @@ AllCops:
     - config/initializers/pagy.rb
     - bin/bundle
     - bin/yarn
+    - config/unicorn.rb
 
 Lint/UnusedMethodArgument:
   Exclude:
