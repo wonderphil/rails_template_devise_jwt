@@ -4,12 +4,16 @@ worker_processes ENV.fetch('RAILS_MAX_THREADS', 5).to_i
 
 APP_PATH = File.expand_path("../..", __FILE__)
 # Listen on a tcp port or unix socket.
-listen "127.0.0.1:#{ENV.fetch('LISTEN_ON', 3000)}"
+listen "0.0.0.0:#{ENV.fetch('LISTEN_ON', 3000)}"
 
-stderr_path APP_PATH + '/log/unicorn.stderr.log'
-stdout_path APP_PATH + '/log/unicorn.stdout.log'
+# stderr_path APP_PATH + '/log/unicorn.stderr.log'
+# stdout_path APP_PATH + '/log/unicorn.stdout.log'
 
-pid APP_PATH + '/tmp/pids/unicorn.pid'
+PID_PATH = APP_PATH + '/storage/pids'
+require 'fileutils'
+FileUtils.mkdir_p PID_PATH
+
+pid PID_PATH + '/unicorn.pid'
 
 # Use a shorter timeout instead of the 60s default. If you are handling large
 # uploads you may want to increase this.

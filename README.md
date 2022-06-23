@@ -9,10 +9,10 @@ This works well with [Fuse React](https://fusetheme.com/admin-templates/react/) 
 
 - ~~Config your timezone accordingly in `application.rb`.~~
 - ~~replace puma with unicorn~~
-- add to docker
+- ~~add to docker~~
 - add git hub action to build docker containers
 - add Validation to models
-- add new relic
+- ~~add new relic~~
 - fix tests
 - configure swagger
 - upgrade ruby to version 3
@@ -33,12 +33,14 @@ This works well with [Fuse React](https://fusetheme.com/admin-templates/react/) 
 - `db_password` - only needed in production
 - `aws_key_id` - only needed in production
 - `aws_secret_key` - only needed in production
+- `new_relic_key` - used to send newrelic stats
 
 ### Environment Vars
 
 These can be in `.env` files in the root of the app
 
 - `SERVER_HOST=localhost`
+- `ASSET_HOST` - used for servering email assets
 - `SITE_EMAIL_ADDRESS=noreply@wonderphiltech.io`
 - `APP_NAME=rails_template`
 - `MAILGUN_DOMAIN=email.wonderphiltech.io`
@@ -48,10 +50,8 @@ These can be in `.env` files in the root of the app
 - `RAILS_MAX_THREADS=5` - only used in production
 - `LISTEN_ON=3000` - only used in production
 - `RAILS_ENV=` - only used in production
-- `PIDFILE=` - only used in production
 - `S3_BUCKET_NAME=` - only used in production
 - `AWS_BUCKET_REGION=` - only used in production
-- `ASSET_HOST` - used for servering email assets
 - `FACEBOOK_LINK` - socail link for company
 - `TWITTER_LINK` - socail link for company
 - `INSTAGRAM_LINK` - socail link for company
@@ -59,6 +59,13 @@ These can be in `.env` files in the root of the app
 - `CONTACT_ADDRESS` - company address
 - `CONTACT_US_LINK` - url to fe contact us page
 - `TIMEZONE` - Time zone setting for Rails
+- `DO_SLEEP=FALSE` - used in docker in the startup script
+- `DO_DB_SETUP=TRUE` - used in docker in the startup script
+- `DO_DB_RESET=FALSE` - used in docker in the startup script
+- `DO_DB_DEPLOY=TRUE` - used in docker in the startup script
+- `DO_DB_SEED=FALSE` - used in docker in the startup script
+- `START_APP=TRUE` - used in docker in the startup script
+- `RAILS_MASTER_KEY` - The master key for secrets file
 
 ### Run local Using Unicorn
 
@@ -70,12 +77,54 @@ unicorn -p 3000
 
 To build docker image and sort on Docker registry, use the following commands, replacing the registry name and user:
 
+First log into your docker registry:
+
 ```bash
 docker login -u docker_reg https://registry.wonderphiltech.io
+```
 
-docker buildx build --push --platform linux/arm64/v8,linux/amd64 -t registry.wonderphiltech.io/rails-api-template-x:latest . && \
+Then if using m1 mac and plan on making contains to work on different platforms use the following:
+
+```bash
+docker buildx build --push --platform linux/arm64/v8,linux/amd64 -t registry.wonderphiltech.io/rails-api-template-x:latest . 
+```
+
+Otherwise if you on intel and only want intel build then run this:
+
+```bash
+docker build -t rails-api-template:latest .
+```
+
+Then once built with either command run this to push to registy:
+
+```bash
 docker tag rails-api-template:latest registry.wonderphiltech.io/rails-api-template:latest && \
 docker push registry.wonderphiltech.io/rails-api-template:latest
+```
+
+### Run Docker Container
+
+#### Without docker-compose
+
+1. First make sure that `.docker.env` file is up to date
+2. Then run the following command:
+  
+```bash
+  docker run -it --env-file .env rails-api-template  
+```
+
+If you want to ssh to the container, then run this:
+
+```bash
+docker run -it --env-file .env rails-api-template /bin/ash
+```
+
+#### With Docker Compose
+
+Just run Docker compose
+
+```bash
+docker-compose -f docker-compose up
 ```
 
 ## Gems
@@ -96,6 +145,8 @@ docker push registry.wonderphiltech.io/rails-api-template:latest
 - [Jbuilder](https://github.com/rails/jbuilder) for json views
 - [Letter Opener](https://github.com/ryanb/letter_opener) for previewing a mail in the browser
 - [Mailgun Ruby](https://github.com/mailgun/mailgun-ruby) for sending emails through mailgun
+- [newrelic-infinite_tracing](https://newrelic.com) for sending code and application monitoring metric to NewRelic
+- [newrelic_rpm](https://newrelic.com) for sending code and application monitoring metric to NewRelic
 - [Oj](https://github.com/ohler55/oj) for optimized json
 - [Pagy](https://github.com/ddnexus/pagy) for pagination
 - [Pry](https://github.com/pry/pry) for enhancing the ruby shell
